@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma": "npm run prisma"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@prisma/client": "^5.21.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -28,6 +30,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "fs": "^0.0.1-security",
+    "i18next": "^23.16.5",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
@@ -39,6 +42,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.51.4",
+    "react-i18next": "^15.1.1",
     "react-phone-number-input": "^3.4.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",

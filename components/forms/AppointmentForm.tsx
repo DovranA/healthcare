@@ -9,18 +9,22 @@ import { z } from "zod";
 
 import { SelectItem } from "@/components/ui/select";
 import { Doctors } from "@/constants";
-import {
-  createAppointment,
-  updateAppointment,
-} from "@/lib/actions/appointment.actions";
+// import {
+//   createAppointment,
+//   updateAppointment,
+// } from "@/lib/actions/appointment.actions";
 import { getAppointmentSchema } from "@/lib/validation";
-import { Appointment } from "@/types/appwrite.types";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
+import { Appointment } from "@prisma/client";
+import {
+  createAppointment,
+  updateAppointment,
+} from "@/lib/actions/appointment.actions";
 
 export const AppointmentForm = ({
   userId,
@@ -74,37 +78,32 @@ export const AppointmentForm = ({
       if (type === "create" && patientId) {
         const appointment = {
           userId,
-          patient: patientId,
+          patientId: patientId,
           primaryPhysician: values.primaryPhysician,
           schedule: new Date(values.schedule),
-          reason: values.reason!,
-          status: status as Status,
-          note: values.note,
-        };
-
+          reason: values.reason ?? null,
+          status: status,
+          note: values.note ?? null,
+        } as Appointment;
         const newAppointment = await createAppointment(appointment);
-
         if (newAppointment) {
           form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.id}`
           );
         }
       } else {
         const appointmentToUpdate = {
-          userId,
-          appointmentId: appointment?.$id!,
+          appointmentId: appointment?.id,
           appointment: {
             primaryPhysician: values.primaryPhysician,
             schedule: new Date(values.schedule),
-            status: status as Status,
-            cancellationReason: values.cancellationReason,
+            status: status,
+            cancellationReason: values.cancellationReason ?? null,
           },
-          type,
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
-
         if (updatedAppointment) {
           setOpen && setOpen(false);
           form.reset();

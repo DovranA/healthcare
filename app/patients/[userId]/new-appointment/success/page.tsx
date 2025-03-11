@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Doctors } from "@/constants";
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
+import { SearchParamProps } from "@/types";
 
 const RequestSuccess = async ({
   searchParams,
@@ -12,9 +13,11 @@ const RequestSuccess = async ({
 }: SearchParamProps) => {
   const appointmentId = (searchParams?.appointmentId as string) || "";
   const appointment = await getAppointment(appointmentId);
-
+  if (!appointment) {
+    return null;
+  }
   const doctor = Doctors.find(
-    (doctor) => doctor.name === appointment.primaryPhysician
+    (doctor) => doctor.name === appointment?.primaryPhysician
   );
 
   return (
@@ -38,7 +41,7 @@ const RequestSuccess = async ({
             alt="success"
           />
           <h2 className="header mb-6 max-w-[600px] text-center">
-            Your <span className="text-green-500">appointment request</span> has
+            Your <span className="text-blue-500">appointment request</span> has
             been successfully submitted!
           </h2>
           <p>We&apos;ll be in touch shortly to confirm.</p>
@@ -71,6 +74,9 @@ const RequestSuccess = async ({
           <Link href={`/patients/${userId}/new-appointment`}>
             New Appointment
           </Link>
+        </Button>
+        <Button variant="outline" className="shad-primary-btn" asChild>
+          <Link href={`/`}>To Home</Link>
         </Button>
 
         <p className="copyright">© 2024 CarePluse</p>

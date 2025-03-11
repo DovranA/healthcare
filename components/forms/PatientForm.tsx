@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form } from "@/components/ui/form";
-import { createUser } from "@/lib/actions/patient.actions";
+// import { createUser } from "@/lib/actions/patient.actions";
 import { UserFormValidation } from "@/lib/validation";
 
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
+import { createUser } from "@/lib/actions/patient.actions";
 
 export const PatientForm = () => {
   const router = useRouter();
@@ -40,7 +41,7 @@ export const PatientForm = () => {
       const newUser = await createUser(user);
 
       if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
+        router.push(`/patients/${newUser.id}/register`);
       }
     } catch (error) {
       console.log(error);
@@ -54,7 +55,7 @@ export const PatientForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
         <section className="mb-12 space-y-4">
           <h1 className="header">Hi there 👋</h1>
-          <p className="text-dark-700">Get started with appointments.</p>
+          <p className="text-dark-500">Get started with appointments.</p>
         </section>
 
         <CustomFormField
@@ -82,7 +83,7 @@ export const PatientForm = () => {
           control={form.control}
           name="phone"
           label="Phone number"
-          placeholder="(555) 123-4567"
+          placeholder="(+993) 65 555555"
         />
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>

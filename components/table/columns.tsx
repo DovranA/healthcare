@@ -5,12 +5,12 @@ import Image from "next/image";
 
 import { Doctors } from "@/constants";
 import { formatDateTime } from "@/lib/utils";
-import { Appointment } from "@/types/appwrite.types";
 
 import { AppointmentModal } from "../AppointmentModal";
 import { StatusBadge } from "../StatusBadge";
+import { Appointment } from "@prisma/client";
 
-export const columns: ColumnDef<Appointment>[] = [
+export const columns: ColumnDef<any>[] = [
   {
     header: "#",
     cell: ({ row }) => {
@@ -22,7 +22,7 @@ export const columns: ColumnDef<Appointment>[] = [
     header: "Patient",
     cell: ({ row }) => {
       const appointment = row.original;
-      return <p className="text-14-medium ">{appointment.patient.name}</p>;
+      return <p className="text-14-medium ">{appointment?.patient?.name}</p>;
     },
   },
   {
@@ -32,7 +32,7 @@ export const columns: ColumnDef<Appointment>[] = [
       const appointment = row.original;
       return (
         <div className="min-w-[115px]">
-          <StatusBadge status={appointment.status} />
+          <StatusBadge status={appointment?.status} />
         </div>
       );
     },
@@ -82,7 +82,7 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div className="flex gap-1">
           <AppointmentModal
-            patientId={appointment.patient.$id}
+            patientId={appointment.patient.id}
             userId={appointment.userId}
             appointment={appointment}
             type="schedule"

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { Appointment } from "@prisma/client";
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -14,7 +16,7 @@ declare interface CreateUserParams {
   phone: string;
 }
 declare interface User extends CreateUserParams {
-  $id: string;
+  id: string;
 }
 
 declare interface RegisterUserParams extends CreateUserParams {
@@ -34,13 +36,12 @@ declare interface RegisterUserParams extends CreateUserParams {
   pastMedicalHistory: string | undefined;
   identificationType: string | undefined;
   identificationNumber: string | undefined;
-  identificationDocument: FormData | undefined;
   privacyConsent: boolean;
 }
 
 declare type CreateAppointmentParams = {
   userId: string;
-  patient: string;
+  patientId: string;
   primaryPhysician: string;
   reason: string;
   schedule: Date;
@@ -49,9 +50,6 @@ declare type CreateAppointmentParams = {
 };
 
 declare type UpdateAppointmentParams = {
-  appointmentId: string;
-  userId: string;
-  timeZone: string;
+  appointmentId?: string;
   appointment: Appointment;
-  type: string;
 };

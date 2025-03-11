@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model Patient {
+  id                     String        @id @default(cuid())
+  createdAt              DateTime      @default(now()) @map("created_at")
+  updatedAt              DateTime      @default(now()) @map("updated_at")
+  email                  String
+  phone                  String
+  name                   String
+  user                   Users?        @relation(fields: [userId], references: [id])
+  userId                 String?       @map("user_id")
+  privacyConsent         Boolean       @map("privacy_consent")
+  gender                 String?
+  birthDate              DateTime?     @map("birth_date")
+  address                String?
+  occupation             String
+  emergencyContactName   String?       @map("emergency_contact_name")
+  emergencyContactNumber String?       @map("emergency_contact_number")
+  insuranceProvider      String?       @map("insurance_provider")
+  insurancePolicyNumber  String?       @map("insurance_policy_number")
+  allergies              String?
+  currentMedication      String?       @map("current_medication")
+  familyMedicalHistory   String?       @map("family_medical_history")
+  identificationType     String?       @map("identification_type")
+  primaryPhysician       String?       @map("primary_physician")
+  pastMedicalHistory     String?
+  identificationNumber   String?
+  Appointment            Appointment[]
+
+  @@map("patient")
+}
+
+model Users {
+  id          String        @id @default(cuid())
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @default(now()) @map("updated_at")
+  email       String
+  phone       String
+  password    String?
+  name        String?
+  Patient     Patient[]
+  Appointment Appointment[]
+
+  @@map("users")
+}
+
+model Doctor {
+  id String @id @default(cuid())
+
+  @@map("doctor")
+}
+
+model Appointment {
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @default(now()) @map("updated_at")
+  user               Users?   @relation(fields: [userId], references: [id])
+  userId             String?  @map("user_id")
+  patient            Patient? @relation(fields: [patientId], references: [id])
+  patientId          String?  @map("patient_id")
+  primaryPhysician   String
+  reason             String
+  schedule           DateTime
+  status             String
+  note               String?
+  cancellationReason String?
+
+  @@map("appointment")
+}
+
+// enum Priority {
+//   low
+//   medium
+//   high
+// }

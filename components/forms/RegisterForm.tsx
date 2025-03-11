@@ -17,7 +17,7 @@ import {
   IdentificationTypes,
   PatientFormDefaultValues,
 } from "@/constants";
-import { registerPatient } from "@/lib/actions/patient.actions";
+// import { registerPatient } from "@/lib/actions/patient.actions";
 import { PatientFormValidation } from "@/lib/validation";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -25,8 +25,10 @@ import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
+import { Users } from "@prisma/client";
+import { registerPatient } from "@/lib/actions/patient.actions";
 
-const RegisterForm = ({ user }: { user: User }) => {
+const RegisterForm = ({ user }: { user: Users }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,7 +36,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: user.name,
+      name: user.name ?? "",
       email: user.email,
       phone: user.phone,
     },
@@ -44,23 +46,23 @@ const RegisterForm = ({ user }: { user: User }) => {
     setIsLoading(true);
 
     // Store file info in form data as
-    let formData;
-    if (
-      values.identificationDocument &&
-      values.identificationDocument?.length > 0
-    ) {
-      const blobFile = new Blob([values.identificationDocument[0]], {
-        type: values.identificationDocument[0].type,
-      });
+    // let formData;
+    // if (
+    //   values.identificationDocument &&
+    //   values.identificationDocument?.length > 0
+    // ) {
+    //   const blobFile = new Blob([values.identificationDocument[0]], {
+    //     type: values.identificationDocument[0].type,
+    //   });
 
-      formData = new FormData();
-      formData.append("blobFile", blobFile);
-      formData.append("fileName", values.identificationDocument[0].name);
-    }
+    //   formData = new FormData();
+    //   formData.append("blobFile", blobFile);
+    //   formData.append("fileName", values.identificationDocument[0].name);
+    // }
 
     try {
       const patient = {
-        userId: user.$id,
+        userId: user.id,
         name: values.name,
         email: values.email,
         phone: values.phone,
@@ -79,16 +81,12 @@ const RegisterForm = ({ user }: { user: User }) => {
         pastMedicalHistory: values.pastMedicalHistory,
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
-        identificationDocument: values.identificationDocument
-          ? formData
-          : undefined,
         privacyConsent: values.privacyConsent,
       };
-
       const newPatient = await registerPatient(patient);
-
+      console.log(newPatient);
       if (newPatient) {
-        router.push(`/patients/${user.$id}/new-appointment`);
+        router.push(`/patients/${user.id}/new-appointment`);
       }
     } catch (error) {
       console.log(error);

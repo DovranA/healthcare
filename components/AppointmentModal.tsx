@@ -11,11 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Appointment } from "@/types/appwrite.types";
 
 import { AppointmentForm } from "./forms/AppointmentForm";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Appointment } from "@prisma/client";
 
 export const AppointmentModal = ({
   patientId,
@@ -37,7 +37,7 @@ export const AppointmentModal = ({
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className={`capitalize ${type === "schedule" && "text-green-500"}`}
+          className={`capitalize ${type === "schedule" && "text-blue-500"}`}
         >
           {type}
         </Button>
