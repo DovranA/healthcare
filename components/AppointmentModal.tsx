@@ -1,5 +1,5 @@
 "use client";
-
+import { Appointment } from "@prisma/client";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,6 @@ import {
 import { AppointmentForm } from "./forms/AppointmentForm";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { Appointment } from "@prisma/client";
 
 export const AppointmentModal = ({
   patientId,

@@ -3,7 +3,6 @@
 import { CreateUserParams, RegisterUserParams } from "@/types";
 import prisma from "../prisma.config";
 
-// // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
   try {
     const oldUser = await prisma.users.findFirst({

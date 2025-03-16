@@ -1,12 +1,11 @@
-export const GenderOptions = ["Male", "Female", "Other"];
+export const GenderOptions = ["Erkek", "Aýal"];
 
 export const PatientFormDefaultValues = {
-  firstName: "",
-  lastName: "",
+  birthDate: undefined,
+  identificationDocument: undefined,
   email: "",
   phone: "",
-  birthDate: new Date(Date.now()),
-  gender: "Male" as Gender,
+  gender: "Erkek",
   address: "",
   occupation: "",
   emergencyContactName: "",
@@ -18,64 +17,63 @@ export const PatientFormDefaultValues = {
   currentMedication: "",
   familyMedicalHistory: "",
   pastMedicalHistory: "",
-  identificationType: "Birth Certificate",
+  identificationType: "Dogluş şahadatnamasy",
   identificationNumber: "",
-  identificationDocument: [],
   treatmentConsent: false,
   disclosureConsent: false,
   privacyConsent: false,
 };
 
 export const IdentificationTypes = [
-  "Birth Certificate",
-  "Driver's License",
-  "Medical Insurance Card/Policy",
-  "Military ID Card",
-  "National Identity Card",
-  "Passport",
-  "Resident Alien Card (Green Card)",
-  "Social Security Card",
-  "State ID Card",
-  "Student ID Card",
-  "Voter ID Card",
+  "Dogluş şahadatnamasy",
+  "Sürüjilik şahadatnamasy",
+  "Lukmançylyk ätiýaçlandyryş şahadatnamasy/polisi",
+  "Harby şahsyýetnamasy",
+  "Milli şahsyýetnamasy",
+  "Pasport",
+  "Ýaşaýyş rugsatnamasy (Ýaşyl karta)",
+  "Sosial üpjünçilik şahadatnamasy",
+  "Ştat şahsyýetnamasy",
+  "Talyp şahsyýetnamasy",
+  "Saýlaw şahsyýetnamasy",
 ];
 
 export const Doctors = [
   {
     image: "/assets/images/dr-green.png",
-    name: "John Green",
+    name: "Myrat Amanow",
   },
   {
     image: "/assets/images/dr-cameron.png",
-    name: "Leila Cameron",
+    name: "Aýgül Atayeva",
   },
   {
     image: "/assets/images/dr-livingston.png",
-    name: "David Livingston",
+    name: "Begenç Orazow",
   },
   {
     image: "/assets/images/dr-peter.png",
-    name: "Evan Peter",
+    name: "Gurbangül Nuryýewa",
   },
   {
     image: "/assets/images/dr-powell.png",
-    name: "Jane Powell",
+    name: "Jeren Annagulyýewa",
   },
   {
     image: "/assets/images/dr-remirez.png",
-    name: "Alex Ramirez",
+    name: "Maksat Rejepow",
   },
   {
     image: "/assets/images/dr-lee.png",
-    name: "Jasmine Lee",
+    name: "Aýna Geldiýewa",
   },
   {
     image: "/assets/images/dr-cruz.png",
-    name: "Alyana Cruz",
+    name: "Gülşirin Hojamyradowa",
   },
   {
     image: "/assets/images/dr-sharma.png",
-    name: "Hardik Sharma",
+    name: "Serdar Rahmanow",
   },
 ];
 

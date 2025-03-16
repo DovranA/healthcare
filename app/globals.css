@@ -83,7 +83,7 @@
 
   /* ===== ADMIN */
   .admin-header {
-    @apply sticky top-3 z-20 mx-3 flex items-center justify-between rounded-2xl bg-dark-200 px-[5%] py-5 shadow-lg xl:px-12;
+    @apply sticky top-3 z-20 mx-3 flex items-center justify-between rounded-2xl bg-gray-100 px-[5%] py-5 shadow-lg xl:px-12;
   }
 
   .admin-main {
@@ -124,7 +124,7 @@
 
   /* Data Table */
   .data-table {
-    @apply z-10 w-full overflow-hidden rounded-lg border border-dark-400 shadow-lg;
+    @apply z-10 w-full overflow-hidden rounded-lg border border-gray-400 shadow-lg;
   }
 
   .table-actions {
@@ -199,7 +199,7 @@
   }
 
   .shad-input {
-    @apply bg-gray-500 placeholder:text-dark-300 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-gray-500 placeholder:text-gray-300 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-input-icon {
@@ -207,7 +207,7 @@
   }
 
   .shad-textArea {
-    @apply bg-gray-500 text-white placeholder:text-dark-300 border-dark-500 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-gray-500 text-white placeholder:text-gray-300 border-dark-500 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-combobox-item {
@@ -219,7 +219,7 @@
   }
 
   .shad-select-trigger {
-    @apply bg-gray-500  placeholder:text-dark-600 border-dark-500 h-11 focus:ring-0 focus:ring-offset-0 !important;
+    @apply bg-gray-500  placeholder:text-gray-300 text-white border-dark-500 h-11 focus:ring-0 focus:ring-offset-0 !important;
   }
 
   .shad-select-content {
@@ -227,7 +227,7 @@
   }
 
   .shad-dialog {
-    @apply bg-gray-500 border-dark-500 !important;
+    @apply bg-gray-200 border-dark-500 !important;
   }
 
   .shad-dialog button {
@@ -243,11 +243,11 @@
   }
 
   .shad-table-row-header {
-    @apply border-b border-dark-400 text-light-200 hover:bg-transparent !important;
+    @apply border-b border-gray-400 text-dark-200 hover:bg-transparent !important;
   }
 
   .shad-table-row {
-    @apply border-b border-dark-400 text-light-200 !important;
+    @apply border-b border-gray-400 text-dark-200 !important;
   }
 
   .shad-otp {
@@ -259,7 +259,7 @@
   }
 
   .shad-alert-dialog {
-    @apply space-y-5 bg-gray-500 border-dark-500 outline-none !important;
+    @apply space-y-5 bg-gray-200 border-dark-500 outline-none !important;
   }
 
   .shad-sheet-content button {
@@ -275,7 +275,7 @@
   }
   /* =====  REACT DATE PICKER OVERRIDES */
   .date-picker {
-    @apply overflow-hidden border-transparent w-full placeholder:text-dark-300  h-11 text-14-medium rounded-md px-3 outline-none !important;
+    @apply overflow-hidden border-transparent w-full placeholder:text-white text-white h-11 text-14-medium rounded-md px-3 outline-none !important;
   }
 }
 

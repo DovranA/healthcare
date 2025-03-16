@@ -7,8 +7,8 @@ declare type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-declare type Gender = "Male" | "Female" | "Other";
-declare type Status = "pending" | "scheduled" | "cancelled";
+declare type Gender = "Erkek" | "Aýal" | "Beýleki";
+declare type Status = "garaşylýar" | "meýilleşdirilen" | "ýatyrylan";
 
 declare interface CreateUserParams {
   name: string;

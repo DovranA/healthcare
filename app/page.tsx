@@ -14,19 +14,21 @@ const Home = ({ searchParams }: SearchParamProps) => {
 
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
-          <Image
-            src="/assets/icons/logo-full.svg"
-            height={1000}
-            width={1000}
-            alt="patient"
-            className="mb-12 h-10 w-fit"
-          />
-
+          <div className="flex gap-2 items-center ">
+            <Image
+              src="/assets/images/onboarding-img.webp"
+              height={1000}
+              width={1000}
+              alt="patient"
+              className=" h-10 w-fit"
+            />
+            Oguz Saglyk
+          </div>
           <PatientForm />
 
           <div className="text-14-regular mt-20 flex justify-between">
             <p className="justify-items-end text-dark-600 xl:text-left">
-              © 2024 CarePluse
+              © 2025 Oguz Saglyk
             </p>
             <Link href="/?admin=true" className="text-blue-500">
               Admin

@@ -1,6 +1,5 @@
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
 import Head from "next/head";
 
 export default function Page() {
@@ -66,19 +65,8 @@ export default function Page() {
           Throw error!
         </button>
 
-        <p>
-          Next, look for the error on the{" "}
-          <a href="https://javascript-mastery.sentry.io/issues/?project=4507458386526208">
-            Issues Page
-          </a>
-          .
-        </p>
-        <p style={{ marginTop: "24px" }}>
-          For more information, see{" "}
-          <a href="https://docs.sentry.io/platforms/javascript/guides/nextjs/">
-            https://docs.sentry.io/platforms/javascript/guides/nextjs/
-          </a>
-        </p>
+        <p>Next, look for the error on the .</p>
+        <p style={{ marginTop: "24px" }}>For more information, see </p>
       </main>
     </div>
   );

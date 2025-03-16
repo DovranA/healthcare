@@ -1,30 +1,26 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-import { SelectItem } from "@/components/ui/select";
-import { Doctors } from "@/constants";
-// import {
-//   createAppointment,
-//   updateAppointment,
-// } from "@/lib/actions/appointment.actions";
-import { getAppointmentSchema } from "@/lib/validation";
-
 import "react-datepicker/dist/react-datepicker.css";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-import CustomFormField, { FormFieldType } from "../CustomFormField";
-import SubmitButton from "../SubmitButton";
-import { Form } from "../ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Appointment } from "@prisma/client";
+
+import { getAppointmentSchema } from "@/lib/validation";
 import {
   createAppointment,
   updateAppointment,
 } from "@/lib/actions/appointment.actions";
+
+import { SelectItem } from "@/components/ui/select";
+import { Doctors } from "@/constants";
+import CustomFormField, { FormFieldType } from "../CustomFormField";
+import SubmitButton from "../SubmitButton";
+import { Form } from "../ui/form";
 
 export const AppointmentForm = ({
   userId,
@@ -118,13 +114,13 @@ export const AppointmentForm = ({
   let buttonLabel;
   switch (type) {
     case "cancel":
-      buttonLabel = "Cancel Appointment";
+      buttonLabel = "Bellenmäni ýatyrmak";
       break;
     case "schedule":
-      buttonLabel = "Schedule Appointment";
+      buttonLabel = "Bellenmäni meýilleşdirmek";
       break;
     default:
-      buttonLabel = "Submit Apppointment";
+      buttonLabel = "Bellenmäni tabşyrmak";
   }
 
   return (
@@ -132,10 +128,7 @@ export const AppointmentForm = ({
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
         {type === "create" && (
           <section className="mb-12 space-y-4">
-            <h1 className="header">New Appointment</h1>
-            <p className="text-dark-700">
-              Request a new appointment in 10 seconds.
-            </p>
+            <h1 className="header">Täze Bellenme</h1>
           </section>
         )}
 
@@ -145,11 +138,15 @@ export const AppointmentForm = ({
               fieldType={FormFieldType.SELECT}
               control={form.control}
               name="primaryPhysician"
-              label="Doctor"
-              placeholder="Select a doctor"
+              label="Lukman"
+              placeholder="Lukman saýlaň"
             >
               {Doctors.map((doctor, i) => (
-                <SelectItem key={doctor.name + i} value={doctor.name}>
+                <SelectItem
+                  className="text-white"
+                  key={doctor.name + i}
+                  value={doctor.name}
+                >
                   <div className="flex cursor-pointer items-center gap-2">
                     <Image
                       src={doctor.image}
@@ -168,9 +165,9 @@ export const AppointmentForm = ({
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="schedule"
-              label="Expected appointment date"
+              label="Garaşylýan bellenme senesi"
               showTimeSelect
-              dateFormat="MM/dd/yyyy  -  h:mm aa"
+              dateFormat="dd/MM/yyyy  -  h:mm aa"
             />
 
             <div
@@ -180,8 +177,8 @@ export const AppointmentForm = ({
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="reason"
-                label="Appointment reason"
-                placeholder="Annual montly check-up"
+                label="Bellenmäniň sebäbi"
+                placeholder="Ýyllyk aýlyk barlag"
                 disabled={type === "schedule"}
               />
 
@@ -189,8 +186,8 @@ export const AppointmentForm = ({
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="note"
-                label="Comments/notes"
-                placeholder="Prefer afternoon appointments, if possible"
+                label="Teswirler/bellikler"
+                placeholder="Mümkin bolsa, günortan bellenmelerini makul bilýärin"
                 disabled={type === "schedule"}
               />
             </div>
@@ -202,8 +199,8 @@ export const AppointmentForm = ({
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="cancellationReason"
-            label="Reason for cancellation"
-            placeholder="Urgent meeting came up"
+            label="Ýatyrmagyň sebäbi"
+            placeholder="Gyssagly ýygnak ýüze çykdy"
           />
         )}
 

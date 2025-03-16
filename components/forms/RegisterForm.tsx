@@ -11,12 +11,7 @@ import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SelectItem } from "@/components/ui/select";
-import {
-  Doctors,
-  GenderOptions,
-  IdentificationTypes,
-  PatientFormDefaultValues,
-} from "@/constants";
+import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 // import { registerPatient } from "@/lib/actions/patient.actions";
 import { PatientFormValidation } from "@/lib/validation";
 
@@ -35,30 +30,32 @@ const RegisterForm = ({ user }: { user: Users }) => {
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
-      ...PatientFormDefaultValues,
       name: user.name ?? "",
       email: user.email,
       phone: user.phone,
+      birthDate: undefined,
+      gender: "Erkek",
+      address: "",
+      occupation: "",
+      emergencyContactName: "",
+      emergencyContactNumber: "",
+      primaryPhysician: "",
+      insuranceProvider: "",
+      insurancePolicyNumber: "",
+      allergies: "",
+      currentMedication: "",
+      familyMedicalHistory: "",
+      pastMedicalHistory: "",
+      identificationType: "Dogluş şahadatnamasy",
+      identificationNumber: "",
+      treatmentConsent: false,
+      disclosureConsent: false,
+      privacyConsent: false,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);
-
-    // Store file info in form data as
-    // let formData;
-    // if (
-    //   values.identificationDocument &&
-    //   values.identificationDocument?.length > 0
-    // ) {
-    //   const blobFile = new Blob([values.identificationDocument[0]], {
-    //     type: values.identificationDocument[0].type,
-    //   });
-
-    //   formData = new FormData();
-    //   formData.append("blobFile", blobFile);
-    //   formData.append("fileName", values.identificationDocument[0].name);
-    // }
 
     try {
       const patient = {
@@ -77,8 +74,8 @@ const RegisterForm = ({ user }: { user: Users }) => {
         insurancePolicyNumber: values.insurancePolicyNumber,
         allergies: values.allergies,
         currentMedication: values.currentMedication,
-        familyMedicalHistory: values.familyMedicalHistory,
-        pastMedicalHistory: values.pastMedicalHistory,
+        familyMedicalHistory: "",
+        pastMedicalHistory: "",
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
         privacyConsent: values.privacyConsent,
@@ -102,13 +99,14 @@ const RegisterForm = ({ user }: { user: Users }) => {
         className="flex-1 space-y-12"
       >
         <section className="space-y-4">
-          <h1 className="header">Welcome 👋</h1>
-          <p className="text-dark-700">Let us know more about yourself.</p>
+          <p className="text-dark-700">
+            Özüňiz hakda has giňişleýin maglumat beriň.
+          </p>
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Personal Information</h2>
+            <h2 className="sub-header">Şahsy maglumatlar</h2>
           </div>
 
           {/* NAME */}
@@ -128,7 +126,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="email"
-              label="Email address"
+              label="Email adresi"
               placeholder="johndoe@gmail.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
@@ -138,7 +136,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.PHONE_INPUT}
               control={form.control}
               name="phone"
-              label="Phone Number"
+              label="Telefon belgisi"
               placeholder="(555) 123-4567"
             />
           </div>
@@ -149,14 +147,15 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="birthDate"
-              label="Date of birth"
+              label="Doglan senesi"
+              placeholder="dd/MM/YYYY"
             />
 
             <CustomFormField
               fieldType={FormFieldType.SKELETON}
               control={form.control}
               name="gender"
-              label="Gender"
+              label="Jyns"
               renderSkeleton={(field) => (
                 <FormControl>
                   <RadioGroup
@@ -167,7 +166,10 @@ const RegisterForm = ({ user }: { user: Users }) => {
                     {GenderOptions.map((option, i) => (
                       <div key={option + i} className="radio-group">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="cursor-pointer">
+                        <Label
+                          htmlFor={option}
+                          className="cursor-pointer text-white"
+                        >
                           {option}
                         </Label>
                       </div>
@@ -184,16 +186,16 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="address"
-              label="Address"
-              placeholder="14 street, New york, NY - 5101"
+              label="Salgysy"
+              placeholder="14 köçe, Nýu-Ýork, NY - 5101"
             />
 
             <CustomFormField
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="occupation"
-              label="Occupation"
-              placeholder=" Software Engineer"
+              label="Iş orny"
+              placeholder="Programma üpjünçiligi inženeri"
             />
           </div>
 
@@ -203,15 +205,15 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="emergencyContactName"
-              label="Emergency contact name"
-              placeholder="Guardian's name"
+              label="Gyssagly habarlaşmak üçin ady"
+              placeholder="Gözegçiniň ady"
             />
 
             <CustomFormField
               fieldType={FormFieldType.PHONE_INPUT}
               control={form.control}
               name="emergencyContactNumber"
-              label="Emergency contact number"
+              label="Gyssagly habarlaşmak üçin belgisi"
               placeholder="(555) 123-4567"
             />
           </div>
@@ -219,7 +221,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Medical Information</h2>
+            <h2 className="sub-header">Lukmançylyk maglumatlary</h2>
           </div>
 
           {/* PRIMARY CARE PHYSICIAN */}
@@ -227,11 +229,15 @@ const RegisterForm = ({ user }: { user: Users }) => {
             fieldType={FormFieldType.SELECT}
             control={form.control}
             name="primaryPhysician"
-            label="Primary care physician"
-            placeholder="Select a physician"
+            label="Esasy lukman"
+            placeholder="Lukman saýlaň"
           >
             {Doctors.map((doctor, i) => (
-              <SelectItem key={doctor.name + i} value={doctor.name}>
+              <SelectItem
+                className="text-white"
+                key={doctor.name + i}
+                value={doctor.name}
+              >
                 <div className="flex cursor-pointer items-center gap-2">
                   <Image
                     src={doctor.image}
@@ -252,7 +258,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="insuranceProvider"
-              label="Insurance provider"
+              label="Ätiýaçlandyryş üpjün ediji"
               placeholder="BlueCross BlueShield"
             />
 
@@ -260,7 +266,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.INPUT}
               control={form.control}
               name="insurancePolicyNumber"
-              label="Insurance policy number"
+              label="Ätiýaçlandyryş polisiň belgisi"
               placeholder="ABC123456789"
             />
           </div>
@@ -271,53 +277,53 @@ const RegisterForm = ({ user }: { user: Users }) => {
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="allergies"
-              label="Allergies (if any)"
-              placeholder="Peanuts, Penicillin, Pollen"
+              label="Allergiýalar (bar bolsa)"
+              placeholder="Ýer fıstığı, Penisilin, Polen"
             />
 
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="currentMedication"
-              label="Current medications"
-              placeholder="Ibuprofen 200mg, Levothyroxine 50mcg"
+              label="Häzirki dermanlar"
+              placeholder="Ibuprofen 200mg, Levotiroksin 50mcg"
             />
           </div>
 
           {/* FAMILY MEDICATION & PAST MEDICATIONS */}
-          <div className="flex flex-col gap-6 xl:flex-row">
+          {/* <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="familyMedicalHistory"
-              label=" Family medical history (if relevant)"
-              placeholder="Mother had brain cancer, Father has hypertension"
+              label="Maşgala lukmançylyk taryhy (bar bolsa)"
+              placeholder="Ejemde beýni düwnügi bardy, kakamda ýokary gan basyşy bar"
             />
 
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="pastMedicalHistory"
-              label="Past medical history"
-              placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
+              label="Geçmiş lukmançylyk taryhy"
+              placeholder="2015-nji ýylda appendektomiýa, çagalykda demgysma keseli"
             />
-          </div>
+          </div> */}
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Identification and Verfication</h2>
+            <h2 className="sub-header">Şahsyýetnama we tassyklama</h2>
           </div>
 
           <CustomFormField
             fieldType={FormFieldType.SELECT}
             control={form.control}
             name="identificationType"
-            label="Identification Type"
-            placeholder="Select identification type"
+            label="Şahsyýetnama görnüşi"
+            placeholder="Şahsyýetnama görnüşini saýlaň"
           >
             {IdentificationTypes.map((type, i) => (
-              <SelectItem key={type + i} value={type}>
+              <SelectItem className="text-white" key={type + i} value={type}>
                 {type}
               </SelectItem>
             ))}
@@ -327,53 +333,51 @@ const RegisterForm = ({ user }: { user: Users }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="identificationNumber"
-            label="Identification Number"
+            label="Şahsyýetnama belgisi"
             placeholder="123456789"
           />
 
-          <CustomFormField
+          {/* <CustomFormField
             fieldType={FormFieldType.SKELETON}
             control={form.control}
             name="identificationDocument"
-            label="Scanned Copy of Identification Document"
+            label="Şahsyýetnama resminamasynyň skanirlenen nusgasy"
             renderSkeleton={(field) => (
               <FormControl>
                 <FileUploader files={field.value} onChange={field.onChange} />
               </FormControl>
             )}
-          />
+          /> */}
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Consent and Privacy</h2>
+            <h2 className="sub-header">Riza we gizlinlik</h2>
           </div>
 
           <CustomFormField
             fieldType={FormFieldType.CHECKBOX}
             control={form.control}
             name="treatmentConsent"
-            label="I consent to receive treatment for my health condition."
+            label="Saglyk ýagdaýym üçin bejergi almak üçin razylyk berýärin."
           />
 
           <CustomFormField
             fieldType={FormFieldType.CHECKBOX}
             control={form.control}
             name="disclosureConsent"
-            label="I consent to the use and disclosure of my health
-            information for treatment purposes."
+            label="Saglyk maglumatlarymy bejergi maksatly ulanmak we açmak üçin razylyk berýärin."
           />
 
           <CustomFormField
             fieldType={FormFieldType.CHECKBOX}
             control={form.control}
             name="privacyConsent"
-            label="I acknowledge that I have reviewed and agree to the
-            privacy policy"
+            label="Gizlinlik syýasatyny gözden geçirdim we razylaşýaryn."
           />
         </section>
 
-        <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
+        <SubmitButton isLoading={isLoading}>Tabşyr we Dowam et</SubmitButton>
       </form>
     </Form>
   );

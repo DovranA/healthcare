@@ -4,8 +4,7 @@ import { Appointment } from "@prisma/client";
 import prisma from "../prisma.config";
 
 import { revalidatePath } from "next/cache";
-import { formatDateTime, parseStringify } from "../utils";
-import { UpdateAppointmentParams } from "@/types";
+import { parseStringify } from "../utils";
 
 //  CREATE APPOINTMENT
 export const createAppointment = async (appointment: Appointment) => {

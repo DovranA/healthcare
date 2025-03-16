@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   AlertDialog,
@@ -42,7 +42,7 @@ export const PasskeyModal = () => {
       } else {
         setOpen(true);
       }
-  }, [encryptedKey]);
+  }, [encryptedKey, path, router]);
 
   const closeModal = () => {
     setOpen(false);

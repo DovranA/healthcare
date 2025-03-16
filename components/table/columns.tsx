@@ -8,7 +8,6 @@ import { formatDateTime } from "@/lib/utils";
 
 import { AppointmentModal } from "../AppointmentModal";
 import { StatusBadge } from "../StatusBadge";
-import { Appointment } from "@prisma/client";
 
 export const columns: ColumnDef<any>[] = [
   {

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { E164Number } from "libphonenumber-js/core";
 import Image from "next/image";
+import React from "react";
 import ReactDatePicker from "react-datepicker";
 import { Control } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
@@ -46,7 +47,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-gray-500">
+        <div className="flex rounded-md border border-dark-300 bg-gray-500">
           {props.iconSrc && (
             <Image
               src={props.iconSrc}
@@ -60,7 +61,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
             <Input
               placeholder={props.placeholder}
               {...field}
-              className="shad-input border-0 text-white placeholder:text-white"
+              className="shad-input border-0 text-white "
             />
           </FormControl>
         </div>
@@ -93,13 +94,13 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.CHECKBOX:
       return (
         <FormControl>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 text-white">
             <Checkbox
               id={props.name}
               checked={field.value}
               onCheckedChange={field.onChange}
             />
-            <label htmlFor={props.name} className="checkbox-label">
+            <label htmlFor={props.name} className="text-black">
               {props.label}
             </label>
           </div>
@@ -121,8 +122,9 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               selected={field.value}
               onChange={(date: Date) => field.onChange(date)}
               timeInputLabel="Time:"
-              dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
-              wrapperClassName="date-picker"
+              dateFormat={props.dateFormat ?? "dd/MM/yyyy"}
+              wrapperClassName="date-picker "
+              placeholderText="dd/MM/YYYY"
             />
           </FormControl>
         </div>
@@ -157,9 +159,9 @@ const CustomFormField = (props: CustomProps) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex-1">
+        <FormItem className="flex-1 text-black ">
           {props.fieldType !== FormFieldType.CHECKBOX && label && (
-            <FormLabel className=" ">{label}</FormLabel>
+            <FormLabel className="">{label}</FormLabel>
           )}
           <RenderInput field={field} props={props} />
 
