@@ -18,7 +18,7 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "patient",
-    header: "Patient",
+    header: "Hassa",
     cell: ({ row }) => {
       const appointment = row.original;
       return <p className="text-14-medium ">{appointment?.patient?.name}</p>;
@@ -38,7 +38,7 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "schedule",
-    header: "Appointment",
+    header: "Bellik",
     cell: ({ row }) => {
       const appointment = row.original;
       return (
@@ -50,7 +50,7 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "primaryPhysician",
-    header: "Doctor",
+    header: "Lukman",
     cell: ({ row }) => {
       const appointment = row.original;
 
@@ -74,7 +74,7 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     id: "actions",
-    header: () => <div className="pl-4">Actions</div>,
+    header: () => <div className="pl-4">Hereketler</div>,
     cell: ({ row }) => {
       const appointment = row.original;
 
@@ -85,16 +85,16 @@ export const columns: ColumnDef<any>[] = [
             userId={appointment.userId}
             appointment={appointment}
             type="schedule"
-            title="Schedule Appointment"
-            description="Please confirm the following details to schedule."
+            title="Bellik Bellik"
+            description="Maglumatlary tassyklaň."
           />
           <AppointmentModal
             patientId={appointment.patient.$id}
             userId={appointment.userId}
             appointment={appointment}
             type="cancel"
-            title="Cancel Appointment"
-            description="Are you sure you want to cancel your appointment?"
+            title="Bellik ýatyryldy"
+            description="Bellik ýatyrylmaly?"
           />
         </div>
       );
