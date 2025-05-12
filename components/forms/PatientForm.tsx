@@ -54,7 +54,7 @@ export const PatientForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
         <section className="mb-12 space-y-4">
-          <h1 className="header">Hoş Geldiňiz 👋</h1>
+          <h1 className="header text-black">Hoş Geldiňiz 👋</h1>
           <p className="text-dark-500"></p>
         </section>
 
@@ -63,7 +63,7 @@ export const PatientForm = () => {
           control={form.control}
           name="name"
           label="Doly ady"
-          placeholder="John Doe"
+          placeholder="Ata Mämmedow"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
@@ -73,7 +73,7 @@ export const PatientForm = () => {
           control={form.control}
           name="email"
           label="Email"
-          placeholder="johndoe@gmail.com"
+          placeholder="atamammedow@gmail.com"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
         />

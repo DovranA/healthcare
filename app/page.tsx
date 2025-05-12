@@ -7,20 +7,19 @@ import { SearchParamProps } from "@/types";
 
 const Home = ({ searchParams }: SearchParamProps) => {
   const isAdmin = searchParams?.admin === "true";
-
   return (
     <div className="flex h-screen max-h-screen">
       {isAdmin && <PasskeyModal />}
 
-      <section className="remove-scrollbar container my-auto">
+      <section className="remove-scrollbar container my-auto ">
         <div className="sub-container max-w-[496px]">
-          <div className="flex gap-2 items-center ">
+          <div className="flex gap-2 items-center text-black ">
             <Image
               src="/assets/images/onboarding-img.webp"
               height={1000}
               width={1000}
               alt="patient"
-              className=" h-10 w-fit"
+              className=" h-10 w-fit "
             />
             Oguz Saglyk
           </div>

@@ -115,7 +115,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="name"
-            placeholder="John Doe"
+            placeholder="Ata Mämmedow"
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
@@ -127,7 +127,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               control={form.control}
               name="email"
               label="Email adresi"
-              placeholder="johndoe@gmail.com"
+              placeholder="atamammedow@gmail.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
             />
@@ -187,7 +187,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               control={form.control}
               name="address"
               label="Salgysy"
-              placeholder="14 köçe, Nýu-Ýork, NY - 5101"
+              placeholder="Aşgabat şäheri Bagtyýarlyk etraby Köşi köçesi 100"
             />
 
             <CustomFormField
@@ -259,7 +259,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               control={form.control}
               name="insuranceProvider"
               label="Ätiýaçlandyryş üpjün ediji"
-              placeholder="BlueCross BlueShield"
+              placeholder="Döwlet Ätiýaçlandyryş guramasy"
             />
 
             <CustomFormField
@@ -278,7 +278,7 @@ const RegisterForm = ({ user }: { user: Users }) => {
               control={form.control}
               name="allergies"
               label="Allergiýalar (bar bolsa)"
-              placeholder="Ýer fıstığı, Penisilin, Polen"
+              placeholder="Penisilin, Polen"
             />
 
             <CustomFormField

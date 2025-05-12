@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
-
+import { getLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 export const metadata: Metadata = {
   title: "Oguz Saglyk",
   description:
@@ -14,16 +15,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn("min-h-screen bg-gray-100 font-sans antialiased")}>
+    <html lang={"tk-TM"}>
+      <body
+        className={cn(
+          "min-h-screen bg-gray-100 font-sans antialiased text-black"
+        )}
+      >
         <ThemeProvider attribute="class" defaultTheme="light">
-          {children}
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

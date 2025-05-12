@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4300",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -34,6 +34,7 @@
     "input-otp": "^1.2.4",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
+    "next-intl": "^4.1.0",
     "next-themes": "^0.3.0",
     "node-appwrite": "^12.0.1",
     "prettier": "^3.2.5",

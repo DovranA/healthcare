@@ -12,7 +12,7 @@ const AdminPage = async () => {
     return null;
   }
   return (
-    <div className="mx-auto flex max-w-7xl flex-col space-y-14">
+    <div className="mx-auto flex max-w-7xl flex-col space-y-14 text-black">
       <header className="admin-header">
         <Link href="/" className="cursor-pointer">
           <div className="flex gap-2 items-center ">

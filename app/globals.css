@@ -347,6 +347,6 @@
   font-weight: 500;
 }
 
-.PhoneInputInput::placeholder {
-  color: #ffffff;
+.PhoneInputInput > option {
+  color: #1a1d21;
 }

@@ -61,13 +61,13 @@ export const AppointmentForm = ({
     let status;
     switch (type) {
       case "schedule":
-        status = "scheduled";
+        status = "meýilleşdirilen";
         break;
       case "cancel":
-        status = "cancelled";
+        status = "ýatyrylan";
         break;
       default:
-        status = "pending";
+        status = "garaşylýar";
     }
 
     try {
